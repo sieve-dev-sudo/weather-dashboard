@@ -1,6 +1,13 @@
+import { mockCities } from './data/mockWeatherData'
+
 function App() {
   return (
-    <h1 className="text-3xl font-bold text-blue-600">Hello Tailwind</h1>
+    <div className="p-4">
+      <h1 className="text-2xl font-semibold mb-4">Weather Dashboard 🌤️</h1>
+      <p className="text-slate-600">
+        Loaded {mockCities.length} mock cities: {mockCities.map(c => c.city).join(', ')}
+      </p>
+    </div>
   )
 }
 
