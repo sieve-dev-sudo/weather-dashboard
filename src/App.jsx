@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import SearchBar from './components/SearchBar'
 import CityList from './components/CityList'
 import CurrentWeather from './components/CurrentWeather'
+import Forecast from './components/Forecast'
 import { mockCities } from './data/mockWeatherData'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <SearchBar onSearch={setQuery} />
       {query && <CityList cities={filteredCities} onSelectCity={setSelectedCity} />}
       <CurrentWeather city={selectedCity} />
+      <Forecast forecast={selectedCity.forecast} />
     </Layout>
   )
 }
