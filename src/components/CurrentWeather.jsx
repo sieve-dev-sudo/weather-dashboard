@@ -1,4 +1,8 @@
-function CurrentWeather({ city }) {
+import { convertTemp } from '../utils/convertTemp'
+
+function CurrentWeather({ city, unit }) {
+  const displayTemp = convertTemp(city.temp, unit)
+
   return (
     <div className="mt-6 p-6 bg-white rounded-xl shadow-sm border border-slate-200">
       <div className="flex items-center justify-between">
@@ -12,8 +16,8 @@ function CurrentWeather({ city }) {
       </div>
 
       <div className="mt-4 flex items-end gap-2">
-        <span className="text-5xl font-bold text-slate-900">{city.temp}°</span>
-        <span className="text-slate-500 mb-1">C</span>
+        <span className="text-5xl font-bold text-slate-900">{displayTemp}°</span>
+        <span className="text-slate-500 mb-1">{unit}</span>
       </div>
 
       <div className="mt-4 flex gap-6 text-sm text-slate-600 border-t border-slate-100 pt-4">
