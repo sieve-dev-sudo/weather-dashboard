@@ -11,14 +11,19 @@ import { mockCities } from './data/mockWeatherData'
 function App() {
   const [query, setQuery] = useState('')
   const [selectedCity, setSelectedCity] = useState(mockCities[0])
+  const [unit, setUnit] = useState('C')
   const loading = useSimulatedLoading(selectedCity.id)
 
   const filteredCities = mockCities.filter((c) =>
     c.city.toLowerCase().includes(query.toLowerCase())
   )
 
+  const toggleUnit = () => {
+    setUnit((prev) => (prev === 'C' ? 'F' : 'C'))
+  }
+
   return (
-    <Layout>
+    <Layout unit={unit} onToggleUnit={toggleUnit}>
       <SearchBar onSearch={setQuery} />
       {query && <CityList cities={filteredCities} onSelectCity={setSelectedCity} />}
 
@@ -26,8 +31,8 @@ function App() {
         <LoadingSpinner />
       ) : (
         <>
-          <CurrentWeather city={selectedCity} />
-          <Forecast forecast={selectedCity.forecast} />
+          <CurrentWeather city={selectedCity} unit={unit} />
+          <Forecast forecast={selectedCity.forecast} unit={unit} />
         </>
       )}
     </Layout>
