@@ -1,6 +1,6 @@
 import ForecastCard from './ForecastCard'
 
-function Forecast({ forecast }) {
+function Forecast({ forecast, unit }) {
   return (
     <div className="mt-6">
       <h3 className="text-sm font-semibold text-slate-700 mb-2">5-Day Forecast</h3>
@@ -11,6 +11,7 @@ function Forecast({ forecast }) {
             day={item.day}
             temp={item.temp}
             icon={item.icon}
+            unit={unit}
           />
         ))}
       </div>
