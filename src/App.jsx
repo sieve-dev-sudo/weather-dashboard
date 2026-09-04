@@ -6,12 +6,14 @@ import CurrentWeather from './components/CurrentWeather'
 import Forecast from './components/Forecast'
 import LoadingSpinner from './components/LoadingSpinner'
 import { useSimulatedLoading } from './hooks/useSimulatedLoading'
+import { useDarkMode } from './hooks/useDarkMode'
 import { mockCities } from './data/mockWeatherData'
 
 function App() {
   const [query, setQuery] = useState('')
   const [selectedCity, setSelectedCity] = useState(mockCities[0])
   const [unit, setUnit] = useState('C')
+  const { isDark, toggleDarkMode } = useDarkMode()
   const loading = useSimulatedLoading(selectedCity.id)
 
   const filteredCities = mockCities.filter((c) =>
@@ -23,7 +25,7 @@ function App() {
   }
 
   return (
-    <Layout unit={unit} onToggleUnit={toggleUnit}>
+    <Layout unit={unit} onToggleUnit={toggleUnit} isDark={isDark} onToggleDark={toggleDarkMode}>
       <SearchBar onSearch={setQuery} />
       {query && <CityList cities={filteredCities} onSelectCity={setSelectedCity} />}
 
