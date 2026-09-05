@@ -1,15 +1,19 @@
 import { convertTemp } from '../utils/convertTemp'
+import FavoriteButton from './FavoriteButton'
 
-function CurrentWeather({ city, unit }) {
+function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
   const displayTemp = convertTemp(city.temp, unit)
 
   return (
     <div className="mt-6 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-            {city.city}, {city.country}
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+              {city.city}, {city.country}
+            </h2>
+            <FavoriteButton isFavorite={isFavorite} onToggle={onToggleFavorite} />
+          </div>
           <p className="text-slate-500 dark:text-slate-400 text-sm">{city.condition}</p>
         </div>
         <span className="text-5xl">{city.icon}</span>
