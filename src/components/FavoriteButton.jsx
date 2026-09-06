@@ -1,12 +1,15 @@
+import { motion } from 'framer-motion'
+
 function FavoriteButton({ isFavorite, onToggle }) {
   return (
-    <button
+    <motion.button
       onClick={onToggle}
       aria-label="Toggle favorite"
-      className="text-2xl hover:scale-110 transition-transform"
+      whileTap={{ scale: 1.4 }}
+      className="text-2xl"
     >
       {isFavorite ? '⭐' : '☆'}
-    </button>
+    </motion.button>
   )
 }
 

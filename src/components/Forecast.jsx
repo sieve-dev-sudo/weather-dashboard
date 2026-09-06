@@ -12,6 +12,7 @@ function Forecast({ forecast, unit }) {
             temp={item.temp}
             icon={item.icon}
             unit={unit}
+            index={index}
           />
         ))}
       </div>
