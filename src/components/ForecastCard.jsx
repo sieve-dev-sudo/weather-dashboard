@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { convertTemp } from '../utils/convertTemp'
 
-function ForecastCard({ day, temp, icon, unit, index = 0 }) {
+function ForecastCard({ day, temp, icon, unit, index = 0, isToday = false }) {
   const displayTemp = convertTemp(temp, unit)
 
   return (
@@ -10,11 +10,23 @@ function ForecastCard({ day, temp, icon, unit, index = 0 }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
       whileHover={{ scale: 1.05 }}
-      className="min-w-0 sm:flex-1 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-2 sm:p-3 text-center shadow-sm"
+      className={`min-w-0 sm:flex-1 rounded-lg p-2 sm:p-3 text-center shadow-sm border ${
+        isToday
+          ? 'bg-indigo-600 border-indigo-600 text-white'
+          : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+      }`}
     >
-      <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">{day}</p>
+      <p className={`text-xs sm:text-sm font-medium ${
+        isToday ? 'text-indigo-100' : 'text-slate-600 dark:text-slate-300'
+      }`}>
+        {isToday ? 'Today' : day}
+      </p>
       <p className="text-xl sm:text-2xl my-1 sm:my-2">{icon}</p>
-      <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-slate-100">{displayTemp}°</p>
+      <p className={`text-xs sm:text-sm font-semibold ${
+        isToday ? 'text-white' : 'text-slate-900 dark:text-slate-100'
+      }`}>
+        {displayTemp}°
+      </p>
     </motion.div>
   )
 }
