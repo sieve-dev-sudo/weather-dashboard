@@ -27,6 +27,11 @@ function App() {
     setUnit((prev) => (prev === 'C' ? 'F' : 'C'))
   }
 
+  const handleSelectCity = (city) => {
+    setSelectedCity(city)
+    setQuery('')
+  }
+
   return (
     <Layout unit={unit} onToggleUnit={toggleUnit} isDark={isDark} onToggleDark={toggleDarkMode}>
       <FavoritesList
@@ -35,8 +40,9 @@ function App() {
         onSelectCity={setSelectedCity}
       />
 
-      <SearchBar onSearch={setQuery} />
-      {query && <CityList cities={filteredCities} onSelectCity={setSelectedCity} />}
+      <SearchBar onSearch={setQuery}>
+        <CityList cities={filteredCities} onSelectCity={handleSelectCity} />
+      </SearchBar>
 
       {loading ? (
         <LoadingSpinner />
