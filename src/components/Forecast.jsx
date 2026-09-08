@@ -1,6 +1,9 @@
 import ForecastCard from './ForecastCard'
+import { getTodayShortName } from '../utils/getToday'
 
 function Forecast({ forecast, unit }) {
+  const todayName = getTodayShortName()
+
   return (
     <div className="mt-4 sm:mt-6">
       <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">7-Day Forecast</h3>
@@ -13,6 +16,7 @@ function Forecast({ forecast, unit }) {
             icon={item.icon}
             unit={unit}
             index={index}
+            isToday={item.day === todayName}
           />
         ))}
       </div>
