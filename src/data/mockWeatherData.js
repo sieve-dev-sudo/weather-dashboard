@@ -14,6 +14,8 @@ export const mockCities = [
       { day: 'Wed', temp: 31, icon: '🌧️' },
       { day: 'Thu', temp: 30, icon: '⛅' },
       { day: 'Fri', temp: 34, icon: '☀️' },
+      { day: 'Sat', temp: 35, icon: '☀️' },
+      { day: 'Sun', temp: 33, icon: '⛅' },
     ],
   },
   {
@@ -31,6 +33,8 @@ export const mockCities = [
       { day: 'Wed', temp: 33, icon: '☀️' },
       { day: 'Thu', temp: 32, icon: '🌧️' },
       { day: 'Fri', temp: 33, icon: '⛅' },
+      { day: 'Sat', temp: 36, icon: '☀️' },
+      { day: 'Sun', temp: 34, icon: '⛅' },
     ],
   },
   {
@@ -48,6 +52,8 @@ export const mockCities = [
       { day: 'Wed', temp: 20, icon: '🌧️' },
       { day: 'Thu', temp: 23, icon: '⛅' },
       { day: 'Fri', temp: 24, icon: '☀️' },
+      { day: 'Sat', temp: 25, icon: '☀️' },
+      { day: 'Sun', temp: 23, icon: '⛅' },
     ],
   },
   {
@@ -65,6 +71,8 @@ export const mockCities = [
       { day: 'Wed', temp: 16, icon: '☁️' },
       { day: 'Thu', temp: 17, icon: '⛅' },
       { day: 'Fri', temp: 16, icon: '☁️' },
+      { day: 'Sat', temp: 15, icon: '🌧️' },
+      { day: 'Sun', temp: 17, icon: '⛅' },
     ],
   },
   {
@@ -82,6 +90,8 @@ export const mockCities = [
       { day: 'Wed', temp: 25, icon: '⛅' },
       { day: 'Thu', temp: 24, icon: '🌧️' },
       { day: 'Fri', temp: 26, icon: '☀️' },
+      { day: 'Sat', temp: 28, icon: '☀️' },
+      { day: 'Sun', temp: 27, icon: '⛅' },
     ],
   },
 ]
