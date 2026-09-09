@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { convertTemp } from '../utils/convertTemp'
+import { WeatherIcon } from '../utils/weatherIcons'
 
 function ForecastCard({ day, temp, icon, unit, index = 0, isToday = false }) {
   const displayTemp = convertTemp(temp, unit)
@@ -21,7 +22,13 @@ function ForecastCard({ day, temp, icon, unit, index = 0, isToday = false }) {
       }`}>
         {isToday ? 'Today' : day}
       </p>
-      <p className="text-xl sm:text-2xl my-1 sm:my-2">{icon}</p>
+      <div className="flex justify-center my-1 sm:my-2">
+        <WeatherIcon
+          icon={icon}
+          size={28}
+          className={isToday ? 'text-white' : 'text-amber-500 dark:text-amber-400'}
+        />
+      </div>
       <p className={`text-xs sm:text-sm font-semibold ${
         isToday ? 'text-white' : 'text-slate-900 dark:text-slate-100'
       }`}>
