@@ -1,4 +1,5 @@
 import EmptyState from './EmptyState'
+import { WeatherIcon } from '../utils/weatherIcons'
 
 function FavoritesList({ cities, favorites, onSelectCity }) {
   const favoriteCities = cities.filter((c) => favorites.includes(c.id))
@@ -32,7 +33,7 @@ function FavoritesList({ cities, favorites, onSelectCity }) {
             onClick={() => onSelectCity(city)}
             className="px-3 py-1.5 text-xs sm:text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1 whitespace-nowrap"
           >
-            <span>{city.icon}</span>
+            <WeatherIcon icon={city.icon} size={16} className="text-amber-500 dark:text-amber-400" />
             <span>{city.city}</span>
           </button>
         ))}

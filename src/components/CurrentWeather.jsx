@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { convertTemp } from '../utils/convertTemp'
+import { WeatherIcon } from '../utils/weatherIcons'
 import FavoriteButton from './FavoriteButton'
 
 function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
@@ -25,13 +26,12 @@ function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
             </div>
             <p className="text-slate-500 dark:text-slate-400 text-sm">{city.condition}</p>
           </div>
-          <motion.span
-            className="text-4xl sm:text-5xl"
+          <motion.div
             animate={{ rotate: [0, -8, 8, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
           >
-            {city.icon}
-          </motion.span>
+            <WeatherIcon icon={city.icon} size={56} className="text-amber-500 dark:text-amber-400" />
+          </motion.div>
         </div>
 
         <div className="mt-3 sm:mt-4 flex items-end gap-2">
