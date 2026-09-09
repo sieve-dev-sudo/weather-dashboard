@@ -1,10 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import EmptyState from './EmptyState'
 
 function CityList({ cities, onSelectCity }) {
   if (cities.length === 0) {
     return (
-      <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg z-10 p-4">
-        <p className="text-slate-500 dark:text-slate-400 text-sm">No cities found.</p>
+      <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg z-10">
+        <EmptyState
+          icon="🌍"
+          title="No cities found"
+          description="Try searching for Phnom Penh, Bangkok, Tokyo, London, or New York"
+        />
       </div>
     )
   }
