@@ -4,7 +4,8 @@ import SearchBar from './components/SearchBar'
 import CityList from './components/CityList'
 import CurrentWeather from './components/CurrentWeather'
 import Forecast from './components/Forecast'
-import LoadingSpinner from './components/LoadingSpinner'
+import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
+import SkeletonForecast from './components/SkeletonForecast'
 import FavoritesList from './components/FavoritesList'
 import { useSimulatedLoading } from './hooks/useSimulatedLoading'
 import { useDarkMode } from './hooks/useDarkMode'
@@ -51,7 +52,10 @@ function App() {
       </SearchBar>
 
       {loading ? (
-        <LoadingSpinner />
+        <>
+          <SkeletonCurrentWeather />
+          <SkeletonForecast />
+        </>
       ) : (
         <>
           <CurrentWeather
