@@ -33,7 +33,13 @@ function App() {
   }
 
   return (
-    <Layout unit={unit} onToggleUnit={toggleUnit} isDark={isDark} onToggleDark={toggleDarkMode}>
+    <Layout
+      unit={unit}
+      onToggleUnit={toggleUnit}
+      isDark={isDark}
+      onToggleDark={toggleDarkMode}
+      condition={selectedCity.condition}
+    >
       <FavoritesList
         cities={mockCities}
         favorites={favorites}
