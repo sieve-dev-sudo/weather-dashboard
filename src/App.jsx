@@ -4,8 +4,10 @@ import SearchBar from './components/SearchBar'
 import CityList from './components/CityList'
 import CurrentWeather from './components/CurrentWeather'
 import Forecast from './components/Forecast'
+import WeatherDetails from './components/WeatherDetails'
 import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
 import SkeletonForecast from './components/SkeletonForecast'
+import SkeletonWeatherDetails from './components/SkeletonWeatherDetails'
 import FavoritesList from './components/FavoritesList'
 import { useSimulatedLoading } from './hooks/useSimulatedLoading'
 import { useDarkMode } from './hooks/useDarkMode'
@@ -54,6 +56,7 @@ function App() {
       {loading ? (
         <>
           <SkeletonCurrentWeather />
+          <SkeletonWeatherDetails />
           <SkeletonForecast />
         </>
       ) : (
@@ -64,6 +67,7 @@ function App() {
             isFavorite={isFavorite(selectedCity.id)}
             onToggleFavorite={() => toggleFavorite(selectedCity.id)}
           />
+          <WeatherDetails city={selectedCity} />
           <Forecast forecast={selectedCity.forecast} unit={unit} />
         </>
       )}
