@@ -14,7 +14,7 @@ function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
-        className="mt-4 sm:mt-6 p-4 sm:p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700"
+        className="mt-4 sm:mt-6 p-4 sm:p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200/50 dark:border-slate-700/50"
       >
         <div className="flex items-center justify-between">
           <div>
@@ -39,7 +39,7 @@ function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
           <span className="text-slate-500 dark:text-slate-400 mb-1">{unit}</span>
         </div>
 
-        <div className="mt-3 sm:mt-4 flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700 pt-3 sm:pt-4">
+        <div className="mt-3 sm:mt-4 flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100/50 dark:border-slate-700/50 pt-3 sm:pt-4">
           <div className="flex items-center gap-1">
             <span>💧</span>
             <span>Humidity: {city.humidity}%</span>

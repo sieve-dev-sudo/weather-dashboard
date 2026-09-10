@@ -1,8 +1,11 @@
 import Header from './Header'
+import { getWeatherTheme } from '../utils/weatherTheme'
 
-function Layout({ children, unit, onToggleUnit, isDark, onToggleDark }) {
+function Layout({ children, unit, onToggleUnit, isDark, onToggleDark, condition }) {
+  const theme = getWeatherTheme(condition)
+
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors">
+    <div className={`min-h-screen bg-gradient-to-b ${theme.gradient} transition-colors duration-700`}>
       <Header
         unit={unit}
         onToggleUnit={onToggleUnit}
