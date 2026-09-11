@@ -43,6 +43,10 @@ function App() {
       onToggleDark={toggleDarkMode}
       condition={selectedCity.condition}
     >
+      <div aria-live="polite" className="sr-only">
+        {loading ? 'Loading weather data' : `Weather loaded for ${selectedCity.city}, ${displayStatus(selectedCity, unit)}`}
+      </div>
+
       <FavoritesList
         cities={mockCities}
         favorites={favorites}
@@ -73,6 +77,10 @@ function App() {
       )}
     </Layout>
   )
+}
+
+function displayStatus(city, unit) {
+  return `${city.temp}${unit === 'F' ? Math.round((city.temp * 9) / 5 + 32) : city.temp} degrees ${unit}, ${city.condition}`
 }
 
 export default App
