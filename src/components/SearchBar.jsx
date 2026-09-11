@@ -11,6 +11,13 @@ function SearchBar({ onSearch, children }) {
     onSearch(value)
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      setIsFocused(false)
+      e.target.blur()
+    }
+  }
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -23,12 +30,21 @@ function SearchBar({ onSearch, children }) {
 
   return (
     <div ref={wrapperRef} className="relative mb-4">
+      <label htmlFor="city-search" className="sr-only">
+        Search for a city
+      </label>
       <input
+        id="city-search"
         type="text"
         value={query}
         onChange={handleChange}
         onFocus={() => setIsFocused(true)}
+        onKeyDown={handleKeyDown}
         placeholder="Search city (e.g. Tokyo, London...)"
+        role="combobox"
+        aria-expanded={Boolean(query && isFocused)}
+        aria-controls="city-search-results"
+        aria-autocomplete="list"
         className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
       {query && isFocused && children}
