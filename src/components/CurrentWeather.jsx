@@ -5,6 +5,7 @@ import FavoriteButton from './FavoriteButton'
 
 function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
   const displayTemp = convertTemp(city.temp, unit)
+  const displayFeelsLike = convertTemp(city.feelsLike, unit)
 
   return (
     <AnimatePresence mode="wait">
@@ -38,6 +39,9 @@ function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
           <span className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100">{displayTemp}°</span>
           <span className="text-slate-500 dark:text-slate-400 mb-1">{unit}</span>
         </div>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          Feels like {displayFeelsLike}°{unit}
+        </p>
 
         <div className="mt-3 sm:mt-4 flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100/50 dark:border-slate-700/50 pt-3 sm:pt-4">
           <div className="flex items-center gap-1">
