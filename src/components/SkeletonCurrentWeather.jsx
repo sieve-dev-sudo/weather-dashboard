@@ -12,6 +12,9 @@ function SkeletonCurrentWeather() {
       <div className="mt-4">
         <div className="h-12 w-32 bg-slate-200 dark:bg-slate-700 rounded" />
       </div>
+      <div className="mt-2">
+        <div className="h-3 w-28 bg-slate-200 dark:bg-slate-700 rounded" />
+      </div>
 
       <div className="mt-4 flex gap-6 border-t border-slate-100/50 dark:border-slate-700/50 pt-4">
         <div className="h-4 w-28 bg-slate-200 dark:bg-slate-700 rounded" />
