@@ -3,9 +3,11 @@ import Layout from './components/Layout'
 import SearchBar from './components/SearchBar'
 import CityList from './components/CityList'
 import CurrentWeather from './components/CurrentWeather'
+import HourlyForecast from './components/HourlyForecast'
 import Forecast from './components/Forecast'
 import WeatherDetails from './components/WeatherDetails'
 import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
+import SkeletonHourlyForecast from './components/SkeletonHourlyForecast'
 import SkeletonForecast from './components/SkeletonForecast'
 import SkeletonWeatherDetails from './components/SkeletonWeatherDetails'
 import FavoritesList from './components/FavoritesList'
@@ -43,10 +45,6 @@ function App() {
       onToggleDark={toggleDarkMode}
       condition={selectedCity.condition}
     >
-      <div aria-live="polite" className="sr-only">
-        {loading ? 'Loading weather data' : `Weather loaded for ${selectedCity.city}, ${displayStatus(selectedCity, unit)}`}
-      </div>
-
       <FavoritesList
         cities={mockCities}
         favorites={favorites}
@@ -60,6 +58,7 @@ function App() {
       {loading ? (
         <>
           <SkeletonCurrentWeather />
+          <SkeletonHourlyForecast />
           <SkeletonWeatherDetails />
           <SkeletonForecast />
         </>
@@ -71,16 +70,13 @@ function App() {
             isFavorite={isFavorite(selectedCity.id)}
             onToggleFavorite={() => toggleFavorite(selectedCity.id)}
           />
+          <HourlyForecast hourly={selectedCity.hourly} unit={unit} />
           <WeatherDetails city={selectedCity} />
           <Forecast forecast={selectedCity.forecast} unit={unit} />
         </>
       )}
     </Layout>
   )
-}
-
-function displayStatus(city, unit) {
-  return `${city.temp}${unit === 'F' ? Math.round((city.temp * 9) / 5 + 32) : city.temp} degrees ${unit}, ${city.condition}`
 }
 
 export default App
