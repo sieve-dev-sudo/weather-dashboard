@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Layout from './components/Layout'
 import SearchBar from './components/SearchBar'
 import CityList from './components/CityList'
@@ -16,6 +16,7 @@ import { useSimulatedLoading } from './hooks/useSimulatedLoading'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useFavorites } from './hooks/useFavorites'
 import { useRecentSearches } from './hooks/useRecentSearches'
+import { useKeyboardShortcut } from './hooks/useKeyboardShortcut'
 import { mockCities } from './data/mockWeatherData'
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
   const { favorites, isFavorite, toggleFavorite } = useFavorites()
   const { recentIds, addRecentSearch, clearRecentSearches } = useRecentSearches()
   const loading = useSimulatedLoading(selectedCity.id)
+  const searchBarRef = useRef(null)
+
+  useKeyboardShortcut('k', () => searchBarRef.current?.focus(), { ctrlOrCmd: true })
 
   const filteredCities = mockCities.filter((c) =>
     c.city.toLowerCase().includes(query.toLowerCase())
@@ -62,7 +66,7 @@ function App() {
         onClear={clearRecentSearches}
       />
 
-      <SearchBar onSearch={setQuery}>
+      <SearchBar ref={searchBarRef} onSearch={setQuery}>
         <CityList cities={filteredCities} onSelectCity={handleSelectCity} />
       </SearchBar>
 
