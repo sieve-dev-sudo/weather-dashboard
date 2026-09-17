@@ -11,9 +11,11 @@ import SkeletonHourlyForecast from './components/SkeletonHourlyForecast'
 import SkeletonForecast from './components/SkeletonForecast'
 import SkeletonWeatherDetails from './components/SkeletonWeatherDetails'
 import FavoritesList from './components/FavoritesList'
+import RecentSearches from './components/RecentSearches'
 import { useSimulatedLoading } from './hooks/useSimulatedLoading'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useFavorites } from './hooks/useFavorites'
+import { useRecentSearches } from './hooks/useRecentSearches'
 import { mockCities } from './data/mockWeatherData'
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
   const [unit, setUnit] = useState('C')
   const { isDark, toggleDarkMode } = useDarkMode()
   const { favorites, isFavorite, toggleFavorite } = useFavorites()
+  const { recentIds, addRecentSearch, clearRecentSearches } = useRecentSearches()
   const loading = useSimulatedLoading(selectedCity.id)
 
   const filteredCities = mockCities.filter((c) =>
@@ -35,6 +38,7 @@ function App() {
   const handleSelectCity = (city) => {
     setSelectedCity(city)
     setQuery('')
+    addRecentSearch(city.id)
   }
 
   return (
@@ -49,6 +53,13 @@ function App() {
         cities={mockCities}
         favorites={favorites}
         onSelectCity={setSelectedCity}
+      />
+
+      <RecentSearches
+        cities={mockCities}
+        recentIds={recentIds}
+        onSelectCity={setSelectedCity}
+        onClear={clearRecentSearches}
       />
 
       <SearchBar onSearch={setQuery}>
