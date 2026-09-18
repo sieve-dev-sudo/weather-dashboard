@@ -6,6 +6,7 @@ import CurrentWeather from './components/CurrentWeather'
 import HourlyForecast from './components/HourlyForecast'
 import Forecast from './components/Forecast'
 import WeatherDetails from './components/WeatherDetails'
+import WeatherAlert from './components/WeatherAlert'
 import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
 import SkeletonHourlyForecast from './components/SkeletonHourlyForecast'
 import SkeletonForecast from './components/SkeletonForecast'
@@ -79,6 +80,7 @@ function App() {
         </>
       ) : (
         <>
+          <WeatherAlert alert={selectedCity.alert} cityId={selectedCity.id} />
           <CurrentWeather
             city={selectedCity}
             unit={unit}
