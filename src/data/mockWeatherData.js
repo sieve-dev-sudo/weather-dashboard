@@ -89,6 +89,11 @@ export const mockCities = [
     uvIndex: 2,
     sunrise: '06:50',
     sunset: '19:20',
+    alert: {
+      type: 'rain',
+      title: 'Heavy Rain Warning',
+      message: 'Heavy rainfall expected today. Carry an umbrella and watch for flooding in low-lying areas.',
+    },
     hourly: [
       { time: '12PM', temp: 15, icon: '🌧️' },
       { time: '1PM', temp: 15, icon: '🌧️' },
@@ -241,6 +246,11 @@ export const mockCities = [
     uvIndex: 10,
     sunrise: '05:35',
     sunset: '18:55',
+    alert: {
+      type: 'heat',
+      title: 'Extreme Heat Advisory',
+      message: 'Temperatures exceeding 40°C. Stay hydrated and avoid prolonged sun exposure.',
+    },
     hourly: [
       { time: '12PM', temp: 40, icon: '☀️' },
       { time: '1PM', temp: 41, icon: '☀️' },
