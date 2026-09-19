@@ -56,7 +56,7 @@ const SearchBar = forwardRef(function SearchBar({ onSearch, children }, ref) {
       <kbd className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 items-center gap-0.5 px-1.5 py-0.5 text-xs font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded pointer-events-none">
         Ctrl K
       </kbd>
-      {query && isFocused && children}
+      {query.trim() !== '' && isFocused && children}
     </div>
   )
 })
