@@ -57,13 +57,13 @@ function App() {
       <FavoritesList
         cities={mockCities}
         favorites={favorites}
-        onSelectCity={setSelectedCity}
+        onSelectCity={handleSelectCity}
       />
 
       <RecentSearches
         cities={mockCities}
         recentIds={recentIds}
-        onSelectCity={setSelectedCity}
+        onSelectCity={handleSelectCity}
         onClear={clearRecentSearches}
       />
 
