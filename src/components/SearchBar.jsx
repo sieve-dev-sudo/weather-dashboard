@@ -7,6 +7,10 @@ const SearchBar = forwardRef(function SearchBar({ value, onChange, children }, r
 
   useImperativeHandle(ref, () => ({
     focus: () => inputRef.current?.focus(),
+    blur: () => {
+      inputRef.current?.blur()
+      setIsFocused(false)
+    },
   }))
 
   const handleKeyDown = (e) => {
@@ -27,7 +31,7 @@ const SearchBar = forwardRef(function SearchBar({ value, onChange, children }, r
   }, [])
 
   return (
-    <div ref={wrapperRef} className="relative mb-4">
+    <div ref={wrapperRef} className="relative mb-6">
       <label htmlFor="city-search" className="sr-only">
         Search for a city
       </label>
