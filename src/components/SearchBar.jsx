@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-const SearchBar = forwardRef(function SearchBar({ onSearch, children }, ref) {
-  const [query, setQuery] = useState('')
+const SearchBar = forwardRef(function SearchBar({ value, onChange, children }, ref) {
   const [isFocused, setIsFocused] = useState(false)
   const wrapperRef = useRef(null)
   const inputRef = useRef(null)
@@ -9,12 +8,6 @@ const SearchBar = forwardRef(function SearchBar({ onSearch, children }, ref) {
   useImperativeHandle(ref, () => ({
     focus: () => inputRef.current?.focus(),
   }))
-
-  const handleChange = (e) => {
-    const value = e.target.value
-    setQuery(value)
-    onSearch(value)
-  }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
@@ -42,13 +35,13 @@ const SearchBar = forwardRef(function SearchBar({ onSearch, children }, ref) {
         ref={inputRef}
         id="city-search"
         type="text"
-        value={query}
-        onChange={handleChange}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onKeyDown={handleKeyDown}
         placeholder="Search city (e.g. Tokyo, London...)"
         role="combobox"
-        aria-expanded={Boolean(query && isFocused)}
+        aria-expanded={Boolean(value.trim() && isFocused)}
         aria-controls="city-search-results"
         aria-autocomplete="list"
         className="w-full pl-4 pr-16 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -56,7 +49,7 @@ const SearchBar = forwardRef(function SearchBar({ onSearch, children }, ref) {
       <kbd className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 items-center gap-0.5 px-1.5 py-0.5 text-xs font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded pointer-events-none">
         Ctrl K
       </kbd>
-      {query.trim() !== '' && isFocused && children}
+      {value.trim() !== '' && isFocused && children}
     </div>
   )
 })
