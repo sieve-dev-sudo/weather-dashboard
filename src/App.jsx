@@ -33,7 +33,7 @@ function App() {
   useKeyboardShortcut('k', () => searchBarRef.current?.focus(), { ctrlOrCmd: true })
 
   const filteredCities = mockCities.filter((c) =>
-    c.city.toLowerCase().includes(query.toLowerCase())
+    c.city.toLowerCase().includes(query.trim().toLowerCase())
   )
 
   const toggleUnit = () => {
@@ -67,7 +67,7 @@ function App() {
         onClear={clearRecentSearches}
       />
 
-      <SearchBar ref={searchBarRef} onSearch={setQuery}>
+      <SearchBar ref={searchBarRef} value={query} onChange={setQuery}>
         <CityList cities={filteredCities} onSelectCity={handleSelectCity} />
       </SearchBar>
 
