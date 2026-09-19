@@ -44,7 +44,10 @@ function CityList({ cities, onSelectCity }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => onSelectCity(city)}
+              onMouseDown={(e) => {
+                e.preventDefault()
+                onSelectCity(city)
+              }}
               onKeyDown={(e) => handleKeyDown(e, city)}
               className="px-4 py-2 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 focus:bg-slate-100 dark:focus:bg-slate-700 focus:outline-none text-slate-900 dark:text-slate-100 flex items-center justify-between"
             >

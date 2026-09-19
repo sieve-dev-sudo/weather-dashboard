@@ -42,8 +42,9 @@ function App() {
 
   const handleSelectCity = (city) => {
     setSelectedCity(city)
-    setQuery('')
+    setQuery(city.city)
     addRecentSearch(city.id)
+    searchBarRef.current?.blur()
   }
 
   return (
