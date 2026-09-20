@@ -14,17 +14,25 @@
 
 ## ✨ Features
 
-- ស្វែងរកទីក្រុងតាមឈ្មោះ (Search) ពី Mock Data
-- បង្ហាញអាកាសធាតុបច្ចុប្បន្ន (Temp, Humidity, Wind, Condition)
-- Forecast ៥ ថ្ងៃ ជាមួយ Animation Stagger
+- ស្វែងរកទីក្រុងតាមឈ្មោះ (Search) ពី Mock Data, គ្របដណ្តប់ 24 ទីក្រុងជុំវិញពិភពលោក
+- Ctrl+K keyboard shortcut ដើម្បី focus search ភ្លាមៗ
+- Recent Searches, រក្សាទុក 5 ទីក្រុងចុងក្រោយបានស្វែងរក
+- បង្ហាញអាកាសធាតុបច្ចុប្បន្ន (Temp, Feels Like, Humidity, Wind, Condition)
+- Hourly Forecast (12-hour scrollable view)
+- 7-Day Forecast ជាមួយ Animation Stagger ព្រមទាំង Highlight ថ្ងៃបច្ចុប្បន្ន
+- Weather Details បន្ថែម, Sunrise, Sunset, Pressure, UV Index
+- Weather Alert Banner (dismissible) សម្រាប់លក្ខខណ្ឌធ្ងន់ធ្ងរ
 - ប្តូរឯកតា Celsius / Fahrenheit
 - Dark Mode Toggle ព្រមទាំងចងចាំ Preference
+- Dynamic Background Theme ប្តូរតាមអាកាសធាតុ
 - រក្សាទុក Favorite Cities ដោយស្វ័យប្រវត្តិទៅ localStorage
-- Loading State Simulation ដូច Real API
+- Skeleton Loading Placeholders (ដូច real API loading)
 - Animation រលូនដោយ Framer Motion
 - Responsive ពេញលេញ គ្រប់ទំហំអេក្រង់ (Mobile / Tablet / Desktop)
+- Accessibility, Keyboard Navigation, ARIA Labels, Screen Reader Support
+- Error Boundary និង Empty State Handling
 - មាន Unit Test ដោយ Vitest + Testing Library
-- **Demo Frontend**: ប្រើ Mock Data ទាំងស្រុង គ្មាន Real API Dependency
+- Demo Frontend, ប្រើ Mock Data ទាំងស្រុង គ្មាន Real API Dependency
 
 ---
 
@@ -35,63 +43,88 @@ weather-dashboard/
 ├── public/
 ├── src/
 │   ├── components/
-│   │   ├── Header.jsx              → Navbar + Unit Toggle + Theme Toggle
-│   │   ├── Layout.jsx              → Layout Wrapper (Header + Main)
-│   │   ├── SearchBar.jsx           → Search Input
-│   │   ├── SearchBar.test.jsx      → Unit Test សម្រាប់ SearchBar
-│   │   ├── CityList.jsx            → List City ពី Search Result
-│   │   ├── CurrentWeather.jsx      → Card អាកាសធាតុបច្ចុប្បន្ន
-│   │   ├── CurrentWeather.test.jsx → Unit Test សម្រាប់ CurrentWeather
-│   │   ├── Forecast.jsx            → List Forecast ៥ ថ្ងៃ
-│   │   ├── ForecastCard.jsx        → Card Forecast មួយថ្ងៃ
-│   │   ├── UnitToggle.jsx          → ប៊ូតុងប្តូរ °C / °F
-│   │   ├── DarkModeToggle.jsx      → ប៊ូតុងប្តូរ Dark/Light Mode
-│   │   ├── FavoriteButton.jsx      → ប៊ូតុង Favorite (⭐/☆)
-│   │   └── FavoritesList.jsx       → List Favorite Cities
+│   │   ├── Header.jsx
+│   │   ├── Layout.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── SearchBar.test.jsx
+│   │   ├── CityList.jsx
+│   │   ├── CurrentWeather.jsx
+│   │   ├── CurrentWeather.test.jsx
+│   │   ├── HourlyForecast.jsx
+│   │   ├── Forecast.jsx
+│   │   ├── ForecastCard.jsx
+│   │   ├── WeatherDetails.jsx
+│   │   ├── WeatherAlert.jsx
+│   │   ├── UnitToggle.jsx
+│   │   ├── DarkModeToggle.jsx
+│   │   ├── FavoriteButton.jsx
+│   │   ├── FavoritesList.jsx
+│   │   ├── RecentSearches.jsx
+│   │   ├── EmptyState.jsx
+│   │   ├── ErrorBoundary.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   ├── SkeletonCurrentWeather.jsx
+│   │   ├── SkeletonHourlyForecast.jsx
+│   │   ├── SkeletonForecast.jsx
+│   │   └── SkeletonWeatherDetails.jsx
 │   ├── data/
-│   │   └── mockWeatherData.js      → Mock Data សម្រាប់ 5 ទីក្រុង
+│   │   └── mockWeatherData.js
 │   ├── hooks/
-│   │   ├── useSimulatedLoading.js  → Custom Hook Simulate Loading
-│   │   ├── useDarkMode.js          → Custom Hook Dark Mode + localStorage
-│   │   └── useFavorites.js         → Custom Hook Favorites + localStorage
+│   │   ├── useSimulatedLoading.js
+│   │   ├── useDarkMode.js
+│   │   ├── useFavorites.js
+│   │   ├── useRecentSearches.js
+│   │   └── useKeyboardShortcut.js
 │   ├── utils/
-│   │   ├── convertTemp.js          → Utility បំលែងសីតុណ្ហភាព
-│   │   └── convertTemp.test.js     → Unit Test សម្រាប់ convertTemp
+│   │   ├── convertTemp.js
+│   │   ├── convertTemp.test.js
+│   │   ├── weatherIcons.jsx
+│   │   ├── weatherTheme.js
+│   │   ├── getUvLabel.js
+│   │   └── getToday.js
 │   ├── test/
-│   │   └── setup.js                → Test Setup (jest-dom)
-│   ├── App.jsx                     → Main App Component
-│   ├── App.css                     → (មិនប្រើទៀត — ជំនួសដោយ Tailwind)
-│   ├── index.css                   → Tailwind Import + Dark Variant
-│   └── main.jsx                    → App Entry Point
+│   │   └── setup.js
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
 ├── .gitignore
-├── eslint.config.js                → ESLint Configuration
-├── index.html                      → HTML Entry Point
-├── LICENSE                         → MIT License
-├── package.json                    → Dependencies + Scripts
+├── eslint.config.js
+├── index.html
+├── LICENSE
+├── package.json
 ├── package-lock.json
 ├── README.md
-└── vite.config.js                  → Vite + Tailwind + Vitest Configuration
+└── vite.config.js
 ```
 
 ---
 
-## 🚀 How to Run
+## 🚀 How to Run Locally
 
-1. Clone Repository នេះ:
+1. Clone Repository នេះ
+
 ```bash
 git clone <url-repo>
 cd weather-dashboard
 ```
-2. ដំឡើង Dependencies:
+
+2. ដំឡើង Dependencies
+
 ```bash
 npm install
 ```
-3. Run Development Server:
+
+3. Run Development Server
+
 ```bash
 npm run dev
 ```
+
 4. បើក Browser ចូល `http://localhost:5173`
-5. ដើម្បី Run Tests:
+
+5. ដើម្បី Run Tests
+
 ```bash
 npm run test
 ```
