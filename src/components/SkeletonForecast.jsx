@@ -1,6 +1,6 @@
 function SkeletonForecast() {
   return (
-    <div className="mt-4 sm:mt-6">
+    <div className="mb-4 sm:mb-6">
       <div className="h-4 w-32 bg-slate-200 dark:bg-slate-700 rounded mb-2 animate-pulse" />
       <div className="grid grid-cols-3 sm:grid-cols-7 gap-2">
         {Array.from({ length: 7 }).map((_, index) => (
