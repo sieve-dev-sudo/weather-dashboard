@@ -74,13 +74,14 @@ function App() {
 
       {loading ? (
         <>
+          <SkeletonForecast />
           <SkeletonCurrentWeather />
           <SkeletonHourlyForecast />
           <SkeletonWeatherDetails />
-          <SkeletonForecast />
         </>
       ) : (
         <>
+          <Forecast forecast={selectedCity.forecast} unit={unit} />
           <WeatherAlert alert={selectedCity.alert} cityId={selectedCity.id} />
           <CurrentWeather
             city={selectedCity}
@@ -90,7 +91,6 @@ function App() {
           />
           <HourlyForecast hourly={selectedCity.hourly} unit={unit} />
           <WeatherDetails city={selectedCity} />
-          <Forecast forecast={selectedCity.forecast} unit={unit} />
         </>
       )}
     </Layout>
