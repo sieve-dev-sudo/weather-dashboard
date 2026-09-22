@@ -18,9 +18,9 @@
 - Ctrl+K keyboard shortcut ដើម្បី focus search ភ្លាមៗ
 - Recent Searches, រក្សាទុក 5 ទីក្រុងចុងក្រោយបានស្វែងរក
 - បង្ហាញអាកាសធាតុបច្ចុប្បន្ន (Temp, Feels Like, Humidity, Wind, Condition)
-- Hourly Forecast (12-hour scrollable view)
+- Hourly Forecast (12-hour scrollable view, dynamic ចាប់ពីម៉ោងបច្ចុប្បន្ន)
 - 7-Day Forecast ជាមួយ Animation Stagger ព្រមទាំង Highlight ថ្ងៃបច្ចុប្បន្ន
-- Weather Details បន្ថែម, Sunrise, Sunset, Pressure, UV Index
+- Weather Details ពេញលេញ 8 metrics, Sunrise, Sunset, Pressure, UV Index, Visibility, Dew Point, Air Quality Index, Chance of Rain
 - Weather Alert Banner (dismissible) សម្រាប់លក្ខខណ្ឌធ្ងន់ធ្ងរ
 - ប្តូរឯកតា Celsius / Fahrenheit
 - Dark Mode Toggle ព្រមទាំងចងចាំ Preference
@@ -81,7 +81,9 @@ weather-dashboard/
 │   │   ├── weatherIcons.jsx
 │   │   ├── weatherTheme.js
 │   │   ├── getUvLabel.js
-│   │   └── getToday.js
+│   │   ├── getAqiLabel.js
+│   │   ├── getToday.js
+│   │   └── getCurrentHourLabel.js
 │   ├── test/
 │   │   └── setup.js
 │   ├── App.jsx
