@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { convertTemp } from '../utils/convertTemp'
 import { WeatherIcon } from '../utils/weatherIcons'
 import FavoriteButton from './FavoriteButton'
+import ShareButton from './ShareButton'
 
 function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
   const displayTemp = convertTemp(city.temp, unit)
@@ -43,15 +44,18 @@ function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
           Feels like {displayFeelsLike}°{unit}
         </p>
 
-        <div className="mt-3 sm:mt-4 flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100/50 dark:border-slate-700/50 pt-3 sm:pt-4">
-          <div className="flex items-center gap-1">
-            <span>💧</span>
-            <span>Humidity: {city.humidity}%</span>
+        <div className="mt-3 sm:mt-4 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100/50 dark:border-slate-700/50 pt-3 sm:pt-4">
+          <div className="flex flex-wrap gap-3 sm:gap-6">
+            <div className="flex items-center gap-1">
+              <span>💧</span>
+              <span>Humidity: {city.humidity}%</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span>💨</span>
+              <span>Wind: {city.wind} km/h</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <span>💨</span>
-            <span>Wind: {city.wind} km/h</span>
-          </div>
+          <ShareButton city={city} unit={unit} />
         </div>
       </motion.div>
     </AnimatePresence>
