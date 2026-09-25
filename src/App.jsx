@@ -81,7 +81,7 @@ function App() {
         </>
       ) : (
         <>
-          <Forecast forecast={selectedCity.forecast} unit={unit} />
+          <Forecast forecast={selectedCity.forecast} unit={unit} city={selectedCity} />
           <WeatherAlert alert={selectedCity.alert} cityId={selectedCity.id} />
           <CurrentWeather
             city={selectedCity}
