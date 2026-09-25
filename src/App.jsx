@@ -89,7 +89,7 @@ function App() {
             isFavorite={isFavorite(selectedCity.id)}
             onToggleFavorite={() => toggleFavorite(selectedCity.id)}
           />
-          <HourlyForecast hourly={selectedCity.hourly} unit={unit} />
+          <HourlyForecast hourly={selectedCity.hourly} unit={unit} city={selectedCity} />
           <WeatherDetails city={selectedCity} />
         </>
       )}
