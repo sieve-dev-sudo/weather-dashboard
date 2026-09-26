@@ -91,6 +91,7 @@ function App() {
             unit={unit}
             isFavorite={isFavorite(selectedCity.id)}
             onToggleFavorite={() => toggleFavorite(selectedCity.id)}
+            allCities={mockCities}
           />
           <HourlyForecast hourly={selectedCity.hourly} unit={unit} city={selectedCity} />
           <TemperatureGraph hourly={selectedCity.hourly} unit={unit} />

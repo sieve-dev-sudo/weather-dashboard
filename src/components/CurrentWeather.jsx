@@ -1,10 +1,14 @@
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { convertTemp } from '../utils/convertTemp'
 import { WeatherIcon } from '../utils/weatherIcons'
 import FavoriteButton from './FavoriteButton'
 import ShareButton from './ShareButton'
+import CompareButton from './CompareButton'
+import CityCompareModal from './CityCompareModal'
 
-function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
+function CurrentWeather({ city, unit, isFavorite, onToggleFavorite, allCities }) {
+  const [showCompare, setShowCompare] = useState(false)
   const displayTemp = convertTemp(city.temp, unit)
   const displayFeelsLike = convertTemp(city.feelsLike, unit)
 
@@ -55,9 +59,21 @@ function CurrentWeather({ city, unit, isFavorite, onToggleFavorite }) {
               <span>Wind: {city.wind} km/h</span>
             </div>
           </div>
-          <ShareButton city={city} unit={unit} />
+          <div className="flex items-center gap-2">
+            <CompareButton onClick={() => setShowCompare(true)} />
+            <ShareButton city={city} unit={unit} />
+          </div>
         </div>
       </motion.div>
+
+      {showCompare && (
+        <CityCompareModal
+          cities={allCities}
+          primaryCity={city}
+          unit={unit}
+          onClose={() => setShowCompare(false)}
+        />
+      )}
     </AnimatePresence>
   )
 }
