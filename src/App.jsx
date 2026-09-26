@@ -4,11 +4,13 @@ import SearchBar from './components/SearchBar'
 import CityList from './components/CityList'
 import CurrentWeather from './components/CurrentWeather'
 import HourlyForecast from './components/HourlyForecast'
+import TemperatureGraph from './components/TemperatureGraph'
 import Forecast from './components/Forecast'
 import WeatherDetails from './components/WeatherDetails'
 import WeatherAlert from './components/WeatherAlert'
 import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
 import SkeletonHourlyForecast from './components/SkeletonHourlyForecast'
+import SkeletonTemperatureGraph from './components/SkeletonTemperatureGraph'
 import SkeletonForecast from './components/SkeletonForecast'
 import SkeletonWeatherDetails from './components/SkeletonWeatherDetails'
 import FavoritesList from './components/FavoritesList'
@@ -77,6 +79,7 @@ function App() {
           <SkeletonForecast />
           <SkeletonCurrentWeather />
           <SkeletonHourlyForecast />
+          <SkeletonTemperatureGraph />
           <SkeletonWeatherDetails />
         </>
       ) : (
@@ -90,6 +93,7 @@ function App() {
             onToggleFavorite={() => toggleFavorite(selectedCity.id)}
           />
           <HourlyForecast hourly={selectedCity.hourly} unit={unit} city={selectedCity} />
+          <TemperatureGraph hourly={selectedCity.hourly} unit={unit} />
           <WeatherDetails city={selectedCity} />
         </>
       )}
