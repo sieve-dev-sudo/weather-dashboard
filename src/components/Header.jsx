@@ -2,8 +2,9 @@ import { CloudSun } from 'lucide-react'
 import UnitToggle from './UnitToggle'
 import DarkModeToggle from './DarkModeToggle'
 import SettingsButton from './SettingsButton'
+import { AboutButton } from './AboutSection'
 
-function Header({ unit, onToggleUnit, isDark, onToggleDark, onOpenSettings }) {
+function Header({ unit, onToggleUnit, isDark, onToggleDark, onOpenSettings, onOpenAbout }) {
   return (
     <header className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm shadow-sm border-b border-slate-200/50 dark:border-slate-700/50">
       <div className="max-w-4xl mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
@@ -15,6 +16,7 @@ function Header({ unit, onToggleUnit, isDark, onToggleDark, onOpenSettings }) {
           <UnitToggle unit={unit} onToggle={onToggleUnit} />
           <DarkModeToggle isDark={isDark} onToggle={onToggleDark} />
           <SettingsButton onClick={onOpenSettings} />
+          <AboutButton onClick={onOpenAbout} />
         </div>
       </div>
     </header>
