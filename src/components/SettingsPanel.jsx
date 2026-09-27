@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, RotateCcw, Trash2 } from 'lucide-react'
-import AboutSection from './AboutSection'
 
 function ToggleSwitch({ checked, onChange, label }) {
   return (
@@ -161,9 +160,6 @@ function SettingsPanel({
                 Reset settings to default
               </button>
             </div>
-
-            {/* About */}
-            <AboutSection />
           </div>
         </motion.div>
       </motion.div>
