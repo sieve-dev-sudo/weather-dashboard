@@ -18,14 +18,19 @@
 - Ctrl+K keyboard shortcut ដើម្បី focus search ភ្លាមៗ
 - Recent Searches, រក្សាទុក 5 ទីក្រុងចុងក្រោយបានស្វែងរក
 - បង្ហាញអាកាសធាតុបច្ចុប្បន្ន (Temp, Feels Like, Humidity, Wind, Condition)
-- Hourly Forecast (12-hour scrollable view, dynamic ចាប់ពីម៉ោងបច្ចុប្បន្ន)
-- 7-Day Forecast ជាមួយ Animation Stagger ព្រមទាំង Highlight ថ្ងៃបច្ចុប្បន្ន
+- Share Feature, share weather info តាម native share sheet ឬ clipboard copy
+- Hourly Forecast (12-hour scrollable view, dynamic ចាប់ពីម៉ោងបច្ចុប្បន្ន, ចុចមើល detail popup)
+- 7-Day Forecast ជាមួយ Animation Stagger, Highlight ថ្ងៃបច្ចុប្បន្ន, ចុចមើល detail popup ជាមួយ day breakdown
+- Temperature Trend Graph (Recharts line chart)
+- Multi-City Comparison, ប្រៀបធៀបទីក្រុងពីរ side by side
 - Weather Details ពេញលេញ 8 metrics, Sunrise, Sunset, Pressure, UV Index, Visibility, Dew Point, Air Quality Index, Chance of Rain
 - Weather Alert Banner (dismissible) សម្រាប់លក្ខខណ្ឌធ្ងន់ធ្ងរ
 - ប្តូរឯកតា Celsius / Fahrenheit
 - Dark Mode Toggle ព្រមទាំងចងចាំ Preference
 - Dynamic Background Theme ប្តូរតាមអាកាសធាតុ
 - រក្សាទុក Favorite Cities ដោយស្វ័យប្រវត្តិទៅ localStorage
+- Settings Page, កំណត់ default unit, default city, mock notifications, data management
+- About Modal, ពន្យល់អំពី project និង tech stack
 - Skeleton Loading Placeholders (ដូច real API loading)
 - Animation រលូនដោយ Framer Motion
 - Responsive ពេញលេញ គ្រប់ទំហំអេក្រង់ (Mobile / Tablet / Desktop)
@@ -51,8 +56,11 @@ weather-dashboard/
 │   │   ├── CurrentWeather.jsx
 │   │   ├── CurrentWeather.test.jsx
 │   │   ├── HourlyForecast.jsx
+│   │   ├── HourlyDetailModal.jsx
+│   │   ├── TemperatureGraph.jsx
 │   │   ├── Forecast.jsx
 │   │   ├── ForecastCard.jsx
+│   │   ├── DayDetailModal.jsx
 │   │   ├── WeatherDetails.jsx
 │   │   ├── WeatherAlert.jsx
 │   │   ├── UnitToggle.jsx
@@ -60,11 +68,18 @@ weather-dashboard/
 │   │   ├── FavoriteButton.jsx
 │   │   ├── FavoritesList.jsx
 │   │   ├── RecentSearches.jsx
+│   │   ├── ShareButton.jsx
+│   │   ├── CompareButton.jsx
+│   │   ├── CityCompareModal.jsx
+│   │   ├── SettingsButton.jsx
+│   │   ├── SettingsPanel.jsx
+│   │   ├── AboutSection.jsx
 │   │   ├── EmptyState.jsx
 │   │   ├── ErrorBoundary.jsx
 │   │   ├── LoadingSpinner.jsx
 │   │   ├── SkeletonCurrentWeather.jsx
 │   │   ├── SkeletonHourlyForecast.jsx
+│   │   ├── SkeletonTemperatureGraph.jsx
 │   │   ├── SkeletonForecast.jsx
 │   │   └── SkeletonWeatherDetails.jsx
 │   ├── data/
@@ -74,7 +89,9 @@ weather-dashboard/
 │   │   ├── useDarkMode.js
 │   │   ├── useFavorites.js
 │   │   ├── useRecentSearches.js
-│   │   └── useKeyboardShortcut.js
+│   │   ├── useKeyboardShortcut.js
+│   │   ├── useShare.js
+│   │   └── useSettings.js
 │   ├── utils/
 │   │   ├── convertTemp.js
 │   │   ├── convertTemp.test.js
@@ -83,7 +100,10 @@ weather-dashboard/
 │   │   ├── getUvLabel.js
 │   │   ├── getAqiLabel.js
 │   │   ├── getToday.js
-│   │   └── getCurrentHourLabel.js
+│   │   ├── getCurrentHourLabel.js
+│   │   ├── estimateHourlyDetails.js
+│   │   ├── estimateDayDetails.js
+│   │   └── formatShareText.js
 │   ├── test/
 │   │   └── setup.js
 │   ├── App.jsx
