@@ -8,6 +8,7 @@ import TemperatureGraph from './components/TemperatureGraph'
 import Forecast from './components/Forecast'
 import WeatherDetails from './components/WeatherDetails'
 import WeatherAlert from './components/WeatherAlert'
+import SettingsPanel from './components/SettingsPanel'
 import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
 import SkeletonHourlyForecast from './components/SkeletonHourlyForecast'
 import SkeletonTemperatureGraph from './components/SkeletonTemperatureGraph'
@@ -20,14 +21,19 @@ import { useDarkMode } from './hooks/useDarkMode'
 import { useFavorites } from './hooks/useFavorites'
 import { useRecentSearches } from './hooks/useRecentSearches'
 import { useKeyboardShortcut } from './hooks/useKeyboardShortcut'
+import { useSettings } from './hooks/useSettings'
 import { mockCities } from './data/mockWeatherData'
 
 function App() {
+  const { settings, updateSetting, resetSettings } = useSettings()
   const [query, setQuery] = useState('')
-  const [selectedCity, setSelectedCity] = useState(mockCities[0])
-  const [unit, setUnit] = useState('C')
+  const [selectedCity, setSelectedCity] = useState(
+    () => mockCities.find((c) => c.id === settings.defaultCityId) || mockCities[0]
+  )
+  const [unit, setUnit] = useState(settings.defaultUnit)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const { isDark, toggleDarkMode } = useDarkMode()
-  const { favorites, isFavorite, toggleFavorite } = useFavorites()
+  const { favorites, isFavorite, toggleFavorite, clearFavorites } = useFavorites()
   const { recentIds, addRecentSearch, clearRecentSearches } = useRecentSearches()
   const loading = useSimulatedLoading(selectedCity.id)
   const searchBarRef = useRef(null)
@@ -56,6 +62,7 @@ function App() {
       isDark={isDark}
       onToggleDark={toggleDarkMode}
       condition={selectedCity.condition}
+      onOpenSettings={() => setIsSettingsOpen(true)}
     >
       <FavoritesList
         cities={mockCities}
@@ -98,6 +105,17 @@ function App() {
           <WeatherDetails city={selectedCity} />
         </>
       )}
+
+      <SettingsPanel
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        cities={mockCities}
+        settings={settings}
+        onUpdateSetting={updateSetting}
+        onResetSettings={resetSettings}
+        onClearFavorites={clearFavorites}
+        onClearRecent={clearRecentSearches}
+      />
     </Layout>
   )
 }

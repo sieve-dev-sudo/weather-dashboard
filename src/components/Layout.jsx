@@ -1,7 +1,7 @@
 import Header from './Header'
 import { getWeatherTheme } from '../utils/weatherTheme'
 
-function Layout({ children, unit, onToggleUnit, isDark, onToggleDark, condition }) {
+function Layout({ children, unit, onToggleUnit, isDark, onToggleDark, condition, onOpenSettings }) {
   const theme = getWeatherTheme(condition)
 
   return (
@@ -11,6 +11,7 @@ function Layout({ children, unit, onToggleUnit, isDark, onToggleDark, condition 
         onToggleUnit={onToggleUnit}
         isDark={isDark}
         onToggleDark={onToggleDark}
+        onOpenSettings={onOpenSettings}
       />
       <main className="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         {children}
