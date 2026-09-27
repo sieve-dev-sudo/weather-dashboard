@@ -9,6 +9,7 @@ import Forecast from './components/Forecast'
 import WeatherDetails from './components/WeatherDetails'
 import WeatherAlert from './components/WeatherAlert'
 import SettingsPanel from './components/SettingsPanel'
+import AboutModal from './components/AboutSection'
 import SkeletonCurrentWeather from './components/SkeletonCurrentWeather'
 import SkeletonHourlyForecast from './components/SkeletonHourlyForecast'
 import SkeletonTemperatureGraph from './components/SkeletonTemperatureGraph'
@@ -32,6 +33,7 @@ function App() {
   )
   const [unit, setUnit] = useState(settings.defaultUnit)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
   const { isDark, toggleDarkMode } = useDarkMode()
   const { favorites, isFavorite, toggleFavorite, clearFavorites } = useFavorites()
   const { recentIds, addRecentSearch, clearRecentSearches } = useRecentSearches()
@@ -63,6 +65,7 @@ function App() {
       onToggleDark={toggleDarkMode}
       condition={selectedCity.condition}
       onOpenSettings={() => setIsSettingsOpen(true)}
+      onOpenAbout={() => setIsAboutOpen(true)}
     >
       <FavoritesList
         cities={mockCities}
@@ -116,6 +119,8 @@ function App() {
         onClearFavorites={clearFavorites}
         onClearRecent={clearRecentSearches}
       />
+
+      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
     </Layout>
   )
 }
